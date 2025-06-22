@@ -1,0 +1,147 @@
+<div class="container">
+  <h3><i class="bi bi-person-lines-fill"></i> Your Profile</h3>
+  <p class="text-muted">Here you can view and update your contact information.</p>
+  
+  <!-- Error Message -->
+  <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+    <i class="bi bi-exclamation-triangle-fill me-2"></i>{{ errorMessage }}
+  </div>
+  
+  <!-- Success Message -->
+  <div *ngIf="successMessage" class="alert alert-success" role="alert">
+    <i class="bi bi-check-circle-fill me-2"></i>{{ successMessage }}
+  </div>
+  
+  <form [formGroup]="updateForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label for="username">Username</label>
+        <input type="text" id="username" class="form-control" formControlName="username" />
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="name">Name</label>
+        <input 
+          type="text" 
+          id="name" 
+          class="form-control" 
+          formControlName="name" 
+          (input)="onNameInput($event)"
+          placeholder="Enter your full name"
+        />
+        <div *ngIf="getFieldError('name')" class="error">
+          <i class="bi bi-exclamation-circle-fill me-1"></i>{{ getFieldError('name') }}
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="email">Email Address</label>
+      <input 
+        type="email" 
+        id="email" 
+        class="form-control" 
+        formControlName="email" 
+        placeholder="Email" 
+        required 
+      />
+      <div *ngIf="getFieldError('email')" class="error">
+        <i class="bi bi-exclamation-circle-fill me-1"></i>{{ getFieldError('email') }}
+      </div>
+    </div>
+    
+    <div class="mb-3">
+      <label for="mobile">Mobile Number</label>
+      <input 
+        type="tel" 
+        id="mobile" 
+        class="form-control" 
+        formControlName="mobile" 
+        (input)="onMobileInput($event)"
+        placeholder="Enter 10-digit mobile number"
+        maxlength="10"
+        required 
+      />
+      <div *ngIf="getFieldError('mobile')" class="error">
+        <i class="bi bi-exclamation-circle-fill me-1"></i>{{ getFieldError('mobile') }}
+      </div>
+    </div>
+    
+    <div class="mb-3">
+      <label for="address">Address</label>
+      <textarea 
+        id="address" 
+        class="form-control" 
+        formControlName="address" 
+        (input)="onAddressInput($event)"
+        placeholder="Enter your complete address (letters, numbers, spaces, /, , only)"
+        rows="3"
+        required 
+      ></textarea>
+      <div *ngIf="getFieldError('address')" class="error">
+        <i class="bi bi-exclamation-circle-fill me-1"></i>{{ getFieldError('address') }}
+      </div>
+    </div>
+    
+    <div class="mb-3">
+      <label for="aadhaar">Aadhaar Number</label>
+      <input 
+        type="text" 
+        id="aadhaar" 
+        class="form-control" 
+        formControlName="aadhaar" 
+        (input)="onAadhaarInput($event)"
+        placeholder="Enter 12-digit Aadhaar number"
+        maxlength="12"
+        required 
+      />
+      <div *ngIf="getFieldError('aadhaar')" class="error">
+        <i class="bi bi-exclamation-circle-fill me-1"></i>{{ getFieldError('aadhaar') }}
+      </div>
+    </div>
+
+    <hr class="my-4">
+
+    <!-- Password Change Section -->
+    <div class="form-check mb-3">
+      <input type="checkbox" class="form-check-input" id="changePasswordCheck" formControlName="changePassword">
+      <label class="form-check-label" for="changePasswordCheck">
+        Do you want to change your password?
+      </label>
+    </div>
+
+    <div *ngIf="updateForm.get('changePassword')?.value" class="password-section">
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="newPassword">New Password</label>
+          <input 
+            type="password" 
+            id="newPassword" 
+            class="form-control" 
+            formControlName="newPassword" 
+            placeholder="New Password"
+          >
+          <div *ngIf="getFieldError('newPassword')" class="error">
+            <i class="bi bi-exclamation-circle-fill me-1"></i>{{ getFieldError('newPassword') }}
+          </div>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="confirmPassword">Confirm New Password</label>
+          <input 
+            type="password" 
+            id="confirmPassword" 
+            class="form-control" 
+            formControlName="confirmPassword" 
+            placeholder="Confirm Password"
+          >
+          <div *ngIf="updateForm.hasError('passwordMismatch') && updateForm.get('confirmPassword')?.touched" class="error">
+            <i class="bi bi-exclamation-circle-fill me-1"></i>Passwords do not match
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-custom w-100" [disabled]="updateForm.invalid">
+      <i class="bi bi-save2-fill me-2"></i> Save Changes
+    </button>
+  </form>
+</div>

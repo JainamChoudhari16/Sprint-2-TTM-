@@ -1,0 +1,439 @@
+body {
+  background-color: var(--neutral-base);
+  font-family: 'Segoe UI', sans-serif;
+  min-height: 100vh;
+}
+
+.navbar-dark {
+  background-color: var(--dark-blue) !important;
+}
+
+.navbar-brand, .nav-link {
+  color: var(--white) !important;
+  font-weight: 600;
+}
+
+.nav-link.active {
+  background-color: var(--primary-blue) !important;
+  color: var(--white) !important;
+  border-radius: 6px;
+}
+
+.container {
+  margin-top: 20px;
+  background-color: var(--white);
+  border: 2px solid var(--border-blue);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 8px 24px rgba(70, 130, 180, 0.2);
+}
+
+h3 {
+  color: var(--dark-blue);
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+h5 {
+  color: var(--dark-blue);
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+// Welcome Section
+.welcome-section {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 20px;
+  padding: 2rem;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+  
+  .welcome-content {
+    flex: 1;
+    
+    .welcome-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      
+      i {
+        margin-right: 0.5rem;
+        color: #ffd700;
+      }
+    }
+    
+    .welcome-subtitle {
+      font-size: 1.1rem;
+      opacity: 0.9;
+      margin: 0;
+    }
+  }
+  
+  .welcome-illustration {
+    i {
+      font-size: 4rem;
+      opacity: 0.8;
+    }
+  }
+}
+
+// Section Titles
+.section-title {
+  color: var(--dark-blue);
+  font-weight: 600;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--primary-blue);
+  
+  i {
+    color: var(--primary-blue);
+    margin-right: 0.5rem;
+  }
+}
+
+// Quick Action Cards
+.quick-action-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9ff 100%);
+  border: 2px solid var(--border-blue);
+  border-radius: 15px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  height: 100%;
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 123, 255, 0.15);
+    border-color: rgba(0, 123, 255, 0.3);
+  }
+  
+  &.primary-card {
+    border-color: rgba(0, 123, 255, 0.2);
+    
+    .quick-action-icon {
+      background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+    }
+  }
+  
+  &.food-card {
+    border-color: rgba(40, 167, 69, 0.2);
+    
+    .quick-action-icon {
+      background: linear-gradient(135deg, #28a745 0%, #1e7e34 100%);
+    }
+  }
+  
+  &.history-card {
+    border-color: rgba(23, 162, 184, 0.2);
+    
+    .quick-action-icon {
+      background: linear-gradient(135deg, #17a2b8 0%, #117a8b 100%);
+    }
+  }
+  
+  .quick-action-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    
+    i {
+      font-size: 1.5rem;
+      color: white;
+      margin: 0;
+    }
+  }
+  
+  h6 {
+    color: var(--dark-blue);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+  }
+  
+  p {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+  }
+  
+  .btn {
+    border-radius: 25px;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+    }
+  }
+}
+
+.table {
+  background-color: var(--white);
+  border: 2px solid var(--border-blue);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.table th {
+  background-color: var(--primary-blue);
+  color: var(--white);
+  border-color: var(--border-blue);
+  font-weight: 600;
+  padding: 0.75rem;
+}
+
+.table td {
+  border-color: var(--border-blue);
+  padding: 0.75rem;
+  color: var(--dark-blue);
+}
+
+.table tbody tr:hover {
+  background: var(--accent-blue);
+}
+
+/* Icon styling */
+.bi {
+  color: var(--primary-blue);
+  margin-right: 0.5rem;
+}
+
+// Recent Bookings
+.recent-bookings-container {
+  .no-bookings {
+    text-align: center;
+    padding: 3rem;
+    color: #6c757d;
+    
+    i {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      opacity: 0.5;
+    }
+    
+    h6 {
+      margin-bottom: 0.5rem;
+      color: #495057;
+    }
+    
+    p {
+      margin-bottom: 1.5rem;
+    }
+  }
+  
+  .booking-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 123, 255, 0.1);
+    transition: all 0.3s ease;
+    
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(0, 123, 255, 0.15);
+    }
+    
+    .booking-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+      
+      .train-info {
+        h6 {
+          color: var(--dark-blue);
+          font-weight: 600;
+          margin-bottom: 0.25rem;
+          font-size: 1.1rem;
+        }
+        
+        .booking-date {
+          color: #6c757d;
+          font-size: 0.9rem;
+        }
+      }
+      
+      .booking-status {
+        .status-badge {
+          padding: 0.25rem 0.75rem;
+          border-radius: 20px;
+          font-size: 0.8rem;
+          font-weight: 500;
+          
+          &.confirmed {
+            background: #d4edda;
+            color: #155724;
+          }
+        }
+      }
+    }
+    
+    .booking-details {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      
+      .route {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        
+        .from, .to {
+          font-weight: 500;
+          color: var(--dark-blue);
+        }
+        
+        i {
+          color: var(--primary-blue);
+        }
+      }
+      
+      .seats {
+        color: #6c757d;
+        font-size: 0.9rem;
+        
+        i {
+          margin-right: 0.25rem;
+        }
+      }
+    }
+  }
+}
+
+// Travel Tips
+.tip-card {
+  background: linear-gradient(135deg, #f8f9ff 0%, #e8f2ff 100%);
+  border-radius: 15px;
+  padding: 1.5rem;
+  text-align: center;
+  height: 100%;
+  border: 1px solid rgba(0, 123, 255, 0.1);
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 25px rgba(0, 123, 255, 0.1);
+  }
+  
+  .tip-icon {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    
+    i {
+      font-size: 1.2rem;
+      color: white;
+    }
+  }
+  
+  h6 {
+    color: var(--dark-blue);
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+  }
+  
+  p {
+    color: #6c757d;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0;
+  }
+}
+
+// Statistics Cards
+.stat-card {
+  background: white;
+  border-radius: 15px;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 123, 255, 0.1);
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 25px rgba(0, 123, 255, 0.15);
+  }
+  
+  .stat-icon {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+    
+    i {
+      font-size: 1.2rem;
+      color: white;
+    }
+  }
+  
+  .stat-content {
+    h4 {
+      color: var(--dark-blue);
+      font-weight: 700;
+      margin: 0;
+      font-size: 1.5rem;
+    }
+    
+    p {
+      color: #6c757d;
+      margin: 0;
+      font-size: 0.9rem;
+    }
+  }
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+  .welcome-section {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+    
+    .welcome-title {
+      font-size: 1.5rem;
+    }
+    
+    .welcome-illustration i {
+      font-size: 3rem;
+    }
+  }
+  
+  .booking-card .booking-details {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .stat-card {
+    margin-bottom: 1rem;
+  }
+}

@@ -1,0 +1,97 @@
+/* All custom styles are now handled by the global stylesheet (styles.scss) */
+/* This ensures a consistent look and feel across the application. */
+
+.booking-card {
+  background-color: var(--white);
+  border: 1px solid var(--border-blue);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 12px var(--shadow-blue);
+  transition: all 0.3s ease;
+}
+
+.booking-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px var(--shadow-blue);
+}
+
+.booking-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  
+  .booking-actions {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    
+    .btn {
+      border-radius: 8px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+      
+      &.btn-success {
+        background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+        border: none;
+        
+        &:hover {
+          background: linear-gradient(135deg, #20c997 0%, #28a745 100%);
+        }
+      }
+      
+      &.btn-outline-primary {
+        border: 2px solid var(--primary-blue);
+        color: var(--primary-blue);
+        
+        &:hover {
+          background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+          color: white;
+        }
+      }
+    }
+  }
+}
+
+.booking-card h5 {
+  color: var(--dark-blue);
+  margin-bottom: 0;
+}
+
+.booking-card p {
+  margin-bottom: 0.5rem;
+}
+
+.booking-card hr {
+  border-top: 1px solid var(--border-blue);
+  margin-top: 1.5rem;
+  margin-bottom: 0;
+}
+
+/* Adjust filter button sizes */
+.d-flex.gap-2 .btn {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.9rem;
+}
+
+/* Modal details styling */
+.modal-body h4 {
+  margin-bottom: 1rem;
+}
+
+.modal-body dt {
+  font-weight: 500;
+  color: var(--dark-blue);
+}
+
+.modal-body dd {
+  margin-bottom: 0.5rem;
+  color: var(--dark-blue);
+  font-weight: normal;
+}

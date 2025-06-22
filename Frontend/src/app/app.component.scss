@@ -1,0 +1,16 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1 0 auto; /* Allow content to grow and fill available space */
+  width: 100%;
+  padding-top: 1rem; /* Space below header */
+  padding-bottom: 2rem; /* Space above footer */
+}
+
+app-footer {
+  flex-shrink: 0; /* Prevent footer from shrinking */
+}

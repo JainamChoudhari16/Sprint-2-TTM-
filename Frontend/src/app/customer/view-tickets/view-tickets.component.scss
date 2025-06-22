@@ -1,0 +1,116 @@
+body {
+  background-color: var(--neutral-base);
+  font-family: 'Segoe UI', sans-serif;
+  min-height: 100vh;
+}
+
+.navbar-dark {
+  background-color: var(--dark-blue) !important;
+}
+
+.navbar-brand, .nav-link {
+  color: var(--white) !important;
+  font-weight: 600;
+}
+
+.nav-link.active {
+  background-color: var(--primary-blue) !important;
+  color: var(--white) !important;
+  border-radius: 6px;
+}
+
+.container {
+  margin-top: 20px;
+  background-color: var(--white);
+  border: 2px solid var(--border-blue);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 8px 24px rgba(70, 130, 180, 0.2);
+  max-width: 900px;
+}
+
+h3 {
+  color: var(--dark-blue);
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.table {
+  border: 2px solid var(--border-blue);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.table th {
+  background-color: var(--primary-blue);
+  color: var(--white);
+  border-color: var(--border-blue);
+  font-weight: 600;
+  padding: 0.75rem;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.table td {
+  border-color: var(--border-blue);
+  padding: 0.75rem;
+  color: var(--dark-blue);
+  font-size: 0.85rem;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.table tbody tr:hover {
+  background-color: var(--accent-blue);
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: rgba(176, 224, 230, 0.3);
+}
+
+.btn-cancel {
+  color: var(--white);
+  background-color: var(--danger);
+  border: 1px solid var(--danger);
+  border-radius: 4px;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.8rem;
+  transition: all 0.2s ease;
+}
+
+.btn-cancel:hover {
+  background-color: #cc0000;
+  border-color: #cc0000;
+  color: var(--white);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(255, 68, 68, 0.3);
+}
+
+/* Icon styling */
+.bi {
+  color: var(--primary-blue);
+  margin-right: 0.25rem;
+}
+
+.table th .bi {
+  color: var(--white);
+  margin-right: 0.25rem;
+}
+
+/* Responsive table */
+.table-responsive {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Empty state styling */
+.table tbody tr td[colspan] {
+  color: var(--dark-blue);
+  font-style: italic;
+  padding: 2rem;
+  text-align: center;
+  background-color: var(--accent-blue);
+}

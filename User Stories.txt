@@ -1,0 +1,123 @@
+User Registration:
+Description:
+Allow users to register by providing basic details (name, email, contact number, address, etc.) with email verification for security.
+Acceptance Criteria:
+1) POST API at /api/register accepts JSON with user details.
+2) Email must be in a valid format; return 400 on failure.
+3) Store user in customer table and create a login record (email, password, userType: Customer, status: Active/Inactive).
+4) Return 409 if email already exists.
+5) Return 201 on success with a success message.
+6) Return 500 for database errors with appropriate messages.
+7) Handle all exceptions during registration gracefully.
+
+
+Admin Registration
+Description:
+Admins can be registered programmatically via backend. Admin accounts must have valid emails and are automatically set as active.
+Acceptance Criteria:
+1) POST API at /api/admin/register accepts JSON with email, password.
+2) Validate email format; return 400 if invalid.
+3) Store admin in login table (userType: Admin, status: Active).
+4) Ensure email uniqueness across both customer and admin logins.
+5) Return 201 on successful registration.
+6) Return 500 for database issues with error messages.
+
+
+User Authentication
+Description:
+Authenticate customers and admins using email and password.
+Acceptance Criteria:
+1) POST API at /api/login with email, password.
+2) Validate credentials and status = Active.
+3) Return 200 on success.
+4) Return 401 for invalid credentials.
+5) Return 403 if the account is deactivated.
+6) Return 400 for missing/invalid fields.
+7) Return 500 for server/database errors.
+
+
+User Dashboard
+Description:
+Authenticated users with active accounts can access dashboards showing booking history, upcoming trips, and profile data.
+Acceptance Criteria:
+1) GET APIs: /api/trains, /api/profile, /api/history, /api/journey.
+2) Return train schedules, user profile, journey info in JSON format.
+3) Return 200 on success, 500 on errors, and 400 for invalid requests.
+
+
+Admin Dashboard
+Description:
+Admins can view system statistics, manage users, and update train schedules (individually or via bulk upload).
+Acceptance Criteria:
+1) POST API at /api/admin/active_trains/upload.
+2) Validate CSV format and content.
+3) Return 201 for successful additions, 204 for updates.
+4) Return 400 if mandatory fields are missing.
+5) Return 500 for upload errors or database issues.
+
+
+Passenger Information
+Description:
+Users can add, update, or delete passenger details for future use during booking.
+Acceptance Criteria:
+1) POST API at /api/passenger_details.
+2) Store and retrieve passenger data for booking (US009).
+3) Return 201 on success, 500 on error.
+
+
+Ticket Booking
+Description:
+Users can search for trains and book tickets by specifying route, date, and class.
+Acceptance Criteria:
+1) Search trains by departure and arrival stations.
+2) Proceed to seat reservation based on availability (linked to US009).
+
+
+Seat Reservation
+Description:
+Users can view and reserve available seats after selecting a journey route.
+Acceptance Criteria:
+1) View available seats for a given journey and date.
+2) Fetch/add passenger info from US006 during booking.
+3) Confirm booking with success message and return 200.
+4) GET API /api/booking_status returns reservation status.
+5) Return 400 if journey expired; return 500 on server error.
+
+
+Seat Allotment
+Description:
+Allocate seats efficiently based on user input, preferences, and eligibility.
+Acceptance Criteria:
+1) Prioritize lower berths for passengers aged >60.
+2) Show seats based on selected quota.
+3) If no quota match, show all available seats.
+
+
+View Ticket
+Description:
+Users can view ticket details after booking, including journey and seat info.
+Acceptance Criteria:
+1) GET API /api/fetch_ticket_details.
+2) TICKETS table: ID, PersonID, LocationID, StartDate, EndDate, Status.
+3) Return 200 on success, 500 on error.
+
+
+
+Food Ordering (Pantry Module)
+Description:
+Passengers can view and order food from the available options.
+Acceptance Criteria:
+1) GET API /api/food_cart to fetch food options.
+2) Users can select and order meals.
+3) Return 200 on success, 500 on error.
+
+
+Customer Support - Reactivate Account
+Description:
+Allow users to restore inactive accounts via support request.
+Acceptance Criteria:
+1) PUT API /api/activate/<user_id>.
+2) No request body required.
+3) Return 401 if credentials are invalid.
+4) Return 400 if user is already active.
+5) Return 200 after successful activation.

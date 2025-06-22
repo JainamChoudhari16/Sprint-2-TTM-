@@ -1,0 +1,71 @@
+.main-footer {
+  background: linear-gradient(135deg, var(--dark-blue) 0%, #3A6B9A 100%);
+  color: var(--white);
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--border-blue);
+  margin-top: auto;
+  backdrop-filter: blur(10px);
+}
+
+.social-icons {
+  margin-bottom: 1rem;
+}
+
+.social-icons .social-icon {
+  font-size: 1.2rem;
+  color: var(--light-blue);
+  margin: 0 0.75rem;
+  transition: all 0.3s ease;
+  padding: 0.5rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  width: 2.5rem;
+  height: 2.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-icons .social-icon:hover {
+  color: var(--white);
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px) scale(1.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.main-footer p {
+  font-size: 0.9rem;
+  color: var(--light-blue);
+  margin-bottom: 0.5rem;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+.main-footer .bi-heart-fill {
+  color: #FF6B6B;
+  font-size: 0.8rem;
+  animation: heartbeat 2s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .main-footer {
+    padding: 1rem 0;
+  }
+  
+  .social-icons .social-icon {
+    font-size: 1rem;
+    margin: 0 0.5rem;
+    width: 2rem;
+    height: 2rem;
+  }
+  
+  .main-footer p {
+    font-size: 0.8rem;
+  }
+}

@@ -1,0 +1,76 @@
+<header class="main-header">
+  <nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+      <!-- Logo -->
+      <a class="navbar-brand">
+        <i class="bi bi-train-front-fill"></i> Train Ticket Management
+      </a>
+
+      <!-- Toggler -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#headerNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Navbar Links -->
+      <div class="collapse navbar-collapse" id="headerNavbar">
+        <!-- Left-aligned Links (for context-specific nav) -->
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <!-- Landing Page Links -->
+          <ng-container *ngIf="isLandingPage">
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/" fragment="home">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/" fragment="about">About Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/" fragment="contact">Contact Us</a>
+            </li>
+          </ng-container>
+
+          <!-- Customer Links -->
+          <ng-container *ngIf="!isLandingPage && isCustomer">
+            <li class="nav-item"><a class="nav-link" routerLink="/customer/home" routerLinkActive="active">Dashboard</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/customer/train-search" routerLinkActive="active">Search Trains</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/customer/food-order" routerLinkActive="active">Order Food</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/customer/food-order-history" routerLinkActive="active">Food History</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/customer/view-tickets" routerLinkActive="active">View Tickets</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/customer/booking-history" routerLinkActive="active">History</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/customer/update-details" routerLinkActive="active">Profile</a></li>
+          </ng-container>
+
+          <!-- Admin Links -->
+          <ng-container *ngIf="!isLandingPage && isAdmin">
+            <li class="nav-item"><a class="nav-link" routerLink="/admin/home" routerLinkActive="active">Dashboard</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/admin/manage-trains" routerLinkActive="active">Manage Trains</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/admin/manage-customers" routerLinkActive="active">Manage Customers</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/admin/profile" routerLinkActive="active">Profile</a></li>
+          </ng-container>
+        </ul>
+
+        <!-- Right-aligned Links (Auth) -->
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <ng-container *ngIf="!isAuthenticated; else loggedIn">
+            <li class="nav-item">
+              <a class="btn btn-sm btn-outline-light" routerLink="/login">
+                <i class="bi bi-box-arrow-in-right"></i> Login
+              </a>
+            </li>
+            <li class="nav-item ms-2">
+              <a class="btn btn-sm btn-light" routerLink="/register">
+                <i class="bi bi-person-plus-fill"></i> Register
+              </a>
+            </li>
+          </ng-container>
+          <ng-template #loggedIn>
+            <li class="nav-item">
+              <button class="btn btn-sm btn-danger" (click)="logout()">
+                <i class="bi bi-box-arrow-right"></i> Logout
+              </button>
+            </li>
+          </ng-template>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>

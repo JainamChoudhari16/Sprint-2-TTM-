@@ -1,0 +1,64 @@
+<div class="container">
+  <h3><i class="bi bi-train-front-fill"></i> Manage Trains</h3>
+  <p class="text-muted">Here you can add new trains or remove existing ones from the system.</p>
+
+  <!-- Add Train Form -->
+  <div class="card mb-4">
+    <div class="card-header">
+      <h4>Add New Train</h4>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="trainForm" (ngSubmit)="addTrain()">
+        <div class="row">
+          <div class="col-md-3 mb-3">
+            <label for="trainName">Train Name</label>
+            <input type="text" id="trainName" class="form-control" formControlName="trainName" required>
+          </div>
+          <div class="col-md-3 mb-3">
+            <label for="origin">Origin</label>
+            <input type="text" id="origin" class="form-control" formControlName="origin" required>
+          </div>
+          <div class="col-md-3 mb-3">
+            <label for="destination">Destination</label>
+            <input type="text" id="destination" class="form-control" formControlName="destination" required>
+          </div>
+          <div class="col-md-3 mb-3 d-flex align-items-end">
+            <button type="submit" class="btn btn-primary w-100" [disabled]="trainForm.invalid">
+              <i class="bi bi-plus-circle-fill"></i> Add Train
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Existing Trains Table -->
+  <h4>Existing Trains</h4>
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Train Name</th>
+          <th>Origin</th>
+          <th>Destination</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let train of trains">
+          <td>{{ train.train }}</td>
+          <td>{{ train.origin }}</td>
+          <td>{{ train.destination }}</td>
+          <td>
+            <button class="btn btn-danger btn-sm" (click)="deleteTrain(train)">
+              <i class="bi bi-trash-fill"></i> Delete
+            </button>
+          </td>
+        </tr>
+        <tr *ngIf="trains.length === 0">
+          <td colspan="4" class="text-center">No trains found.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

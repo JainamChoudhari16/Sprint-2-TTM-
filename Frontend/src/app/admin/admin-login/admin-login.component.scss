@@ -1,0 +1,86 @@
+body {
+  background-color: var(--neutral-base);
+  font-family: 'Segoe UI', sans-serif;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.admin-login-container {
+  background-color: var(--white);
+  border: 2px solid var(--border-blue);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(70, 130, 180, 0.2);
+  padding: 1.5rem;
+  max-width: 400px;
+  width: 100%;
+}
+
+.admin-login-container h3 {
+  text-align: center;
+  margin-bottom: 1.25rem;
+  font-weight: 600;
+  color: var(--dark-blue);
+  font-size: 1.3rem;
+}
+
+.form-label {
+  font-weight: 600;
+  color: var(--dark-blue);
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.form-control {
+  border: 2px solid var(--border-blue);
+  border-radius: 6px;
+  padding: 0.75rem;
+  background-color: var(--accent-blue);
+  color: var(--dark-blue);
+  transition: all 0.2s ease;
+  font-size: 0.9rem;
+}
+
+.form-control:focus {
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 0 0.2rem rgba(30, 144, 255, 0.25);
+  background-color: var(--white);
+}
+
+.form-control::placeholder {
+  color: var(--dark-blue);
+  opacity: 0.7;
+}
+
+.btn-primary {
+  width: 100%;
+  background-color: var(--primary-blue);
+  border-color: var(--primary-blue);
+  color: var(--white);
+  font-weight: 600;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  padding: 0.75rem;
+}
+
+.btn-primary:hover {
+  background-color: var(--secondary-blue);
+  border-color: var(--secondary-blue);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(30, 144, 255, 0.3);
+}
+
+.error-message {
+  color: var(--danger);
+  font-size: 0.8rem;
+  text-align: center;
+  margin-top: 0.5rem;
+  font-weight: 500;
+}
+
+/* Icon styling */
+.bi {
+  color: var(--primary-blue);
+  margin-right: 0.5rem;
+}

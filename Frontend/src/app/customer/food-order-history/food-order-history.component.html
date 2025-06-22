@@ -1,0 +1,127 @@
+<div class="container mt-4">
+  <div class="food-history-container">
+    <h3 class="mb-4">
+      <i class="bi bi-clock-history"></i> Food Order History
+    </h3>
+
+    <!-- Loading State -->
+    <div *ngIf="loading" class="text-center py-5">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <p class="mt-3">Loading your order history...</p>
+    </div>
+
+    <!-- No Orders State -->
+    <div *ngIf="!loading && orders.length === 0" class="text-center py-5">
+      <i class="bi bi-emoji-frown display-1 text-muted"></i>
+      <h5 class="mt-3">No food orders found</h5>
+      <p class="text-muted">You haven't placed any food orders yet.</p>
+      <a routerLink="/customer/food-order" class="btn btn-primary">
+        <i class="bi bi-egg-fried"></i> Order Food Now
+      </a>
+    </div>
+
+    <!-- Orders List -->
+    <div *ngIf="!loading && orders.length > 0" class="orders-list">
+      <div *ngFor="let order of orders" class="order-card">
+        <div class="order-header">
+          <div class="order-info">
+            <h6 class="order-id">Order #{{ order.id }}</h6>
+            <p class="order-date">
+              <i class="bi bi-calendar3"></i> {{ formatDate(order.orderDate) }}
+            </p>
+          </div>
+          <div class="order-status">
+            <span [class]="getStatusBadgeClass(order.status)">
+              {{ getStatusText(order.status) }}
+            </span>
+          </div>
+        </div>
+        
+        <div class="order-summary">
+          <div class="order-items">
+            <span class="items-count">
+              <i class="bi bi-bag"></i> {{ getTotalItems(order) }} items
+            </span>
+          </div>
+          <div class="order-total">
+            <strong>Total: ₹{{ order.totalAmount }}</strong>
+          </div>
+        </div>
+        
+        <div class="order-actions">
+          <button 
+            class="btn btn-outline-primary btn-sm"
+            (click)="viewOrderDetails(order)">
+            <i class="bi bi-eye"></i> View Details
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Order Details Modal -->
+  <div *ngIf="selectedOrder" class="order-modal">
+    <div class="order-modal-content">
+      <div class="order-modal-header">
+        <h4>
+          <i class="bi bi-receipt"></i> Order #{{ selectedOrder.id }} Details
+        </h4>
+        <button class="btn-close" (click)="closeOrderDetails()"></button>
+      </div>
+      
+      <div class="order-modal-body">
+        <div class="order-details-grid">
+          <div class="detail-section">
+            <h6>Order Information</h6>
+            <div class="detail-item">
+              <span class="label">Order Date:</span>
+              <span class="value">{{ formatDate(selectedOrder.orderDate) }}</span>
+            </div>
+            <div class="detail-item">
+              <span class="label">Status:</span>
+              <span [class]="getStatusBadgeClass(selectedOrder.status)">
+                {{ getStatusText(selectedOrder.status) }}
+              </span>
+            </div>
+            <div class="detail-item" *ngIf="selectedOrder.trainNumber">
+              <span class="label">Train Number:</span>
+              <span class="value">{{ selectedOrder.trainNumber }}</span>
+            </div>
+            <div class="detail-item" *ngIf="selectedOrder.seatNumber">
+              <span class="label">Seat Number:</span>
+              <span class="value">{{ selectedOrder.seatNumber }}</span>
+            </div>
+          </div>
+          
+          <div class="detail-section">
+            <h6>Order Items</h6>
+            <div class="order-items-list">
+              <div *ngFor="let item of selectedOrder.foodItems" class="order-item">
+                <div class="item-details">
+                  <span class="item-name">{{ item.foodItem.name }}</span>
+                  <span class="item-quantity">x{{ item.quantity }}</span>
+                </div>
+                <div class="item-price">₹{{ item.price }}</div>
+              </div>
+            </div>
+            <hr>
+            <div class="order-total">
+              <strong>Total Amount: ₹{{ selectedOrder.totalAmount }}</strong>
+            </div>
+          </div>
+          
+          <div class="detail-section" *ngIf="selectedOrder.specialInstructions">
+            <h6>Special Instructions</h6>
+            <p class="special-instructions">{{ selectedOrder.specialInstructions }}</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="order-modal-footer">
+        <button class="btn btn-secondary" (click)="closeOrderDetails()">Close</button>
+      </div>
+    </div>
+  </div>
+</div> 

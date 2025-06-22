@@ -1,0 +1,129 @@
+<!-- Booking Form Section -->
+<div class="container" *ngIf="!showConfirmation">
+  <h3><i class="bi bi-ticket-detailed-fill"></i> Book a Train Ticket</h3>
+  <form [formGroup]="bookingForm" (ngSubmit)="onSubmit()">
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label for="userId">User ID</label>
+        <input type="text" id="userId" class="form-control" [value]="userId" readonly disabled />
+      </div>
+      <div class="col-md-6">
+        <label for="name">Name</label>
+        <input type="text" id="name" class="form-control" formControlName="name" placeholder="Name" required />
+        <div class="text-danger small" *ngIf="bookingForm.get('name')?.invalid && bookingForm.get('name')?.touched">
+          Name must be at least 2 letters and contain only alphabets.
+        </div>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-md-4">
+        <label for="mobile">Mobile</label>
+        <input type="tel" id="mobile" class="form-control" formControlName="mobile" placeholder="Mobile Number" required />
+        <div class="text-danger small" *ngIf="bookingForm.get('mobile')?.invalid && bookingForm.get('mobile')?.touched">
+          Mobile number must be exactly 10 digits.
+        </div>
+      </div>
+      <div class="col-md-4">
+        <label for="age">Age</label>
+        <input type="number" id="age" class="form-control" formControlName="age" min="1" placeholder="Age" required />
+        <div class="text-danger small" *ngIf="bookingForm.get('age')?.invalid && bookingForm.get('age')?.touched">
+          Age must be between 1 to 120.
+        </div>
+      </div>
+      <div class="col-md-4">
+        <label for="date">Date of Travel</label>
+        <input type="date" id="date" class="form-control" formControlName="date" [min]="minDate" required />
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label for="boarding">Boarding Station</label>
+        <input type="text" id="boarding" class="form-control" formControlName="boarding" placeholder="Boarding Station" required />
+      </div>
+      <div class="col-md-6">
+        <label for="destination">Destination Station</label>
+        <input type="text" id="destination" class="form-control" formControlName="destination" placeholder="Destination Station" required />
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label for="category">Ticket Category</label>
+        <select id="category" class="form-select" formControlName="category" required>
+          <option value="">Select</option>
+          <option>First</option>
+          <option>AC</option>
+          <option>Sleeper</option>
+        </select>
+      </div>
+      <div class="col-md-6">
+        <label for="trainSelect">Train Name</label>
+        <input type="text" id="trainSelect" class="form-control" formControlName="train" readonly />
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="numTickets">Number of Tickets</label>
+      <input type="number" id="numTickets" class="form-control" formControlName="numTickets" min="1" placeholder="Number of Tickets" required />
+      <div class="text-danger small" *ngIf="bookingForm.get('numTickets')?.invalid && bookingForm.get('numTickets')?.touched">
+        You can book a minimum of 1 and a maximum of 6 tickets.
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="paymentMethod">Payment Method</label>
+      <select id="paymentMethod" class="form-select" formControlName="paymentMethod" required>
+        <option value="">Select</option>
+        <option>UPI</option>
+        <option>Net Banking</option>
+      </select>
+    </div>
+    <div class="form-check mb-3">
+      <input class="form-check-input" type="checkbox" id="agreeTerms" formControlName="agreeTerms" required />
+      <label class="form-check-label" for="agreeTerms">
+        I agree to the terms and conditions.
+      </label>
+    </div>
+    <button type="submit" class="btn btn-custom" [disabled]="bookingForm.invalid">
+      <i class="bi bi-check-circle-fill me-2"></i> Confirm & Pay
+    </button>
+  </form>
+</div>
+
+<!-- Confirmation Section -->
+<div class="container" *ngIf="showConfirmation && bookingData">
+  <div class="confirmation-card">
+    <div class="text-center mb-4">
+      <i class="bi bi-check-circle-fill text-success" style="font-size: 4rem;"></i>
+      <h3 class="text-success mt-3">Booking Confirmed!</h3>
+      <p class="text-muted">Your ticket has been successfully booked.</p>
+    </div>
+
+    <div class="ticket-details">
+      <h4><i class="bi bi-ticket-perforated-fill"></i> Ticket Details</h4>
+      <div class="row">
+        <div class="col-md-6">
+          <p><strong>Ticket ID:</strong> {{ bookingData.ticketId }}</p>
+          <p><strong>Train:</strong> {{ bookingData.train }}</p>
+          <p><strong>From:</strong> {{ bookingData.origin }}</p>
+          <p><strong>To:</strong> {{ bookingData.destination }}</p>
+        </div>
+        <div class="col-md-6">
+          <p><strong>Date:</strong> {{ bookingData.date }}</p>
+          <p><strong>Passenger:</strong> {{ bookingData.name }}</p>
+          <p><strong>Category:</strong> {{ bookingData.category }}</p>
+          <p><strong>Tickets:</strong> {{ bookingData.numTickets }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-3">
+      <button class="btn btn-success me-1" (click)="downloadTicket()">
+         Download Ticket
+      </button>
+      <button class="btn btn-success me-2" routerLink="/customer/view-tickets">
+         View All Tickets
+      </button>
+      <button class="btn btn-success me-3" (click)="bookAnotherTicket()">
+         Book Another Ticket
+      </button>
+    </div>
+  </div>
+</div>

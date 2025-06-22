@@ -1,0 +1,47 @@
+<div class="container">
+  <h2><i class="bi bi-person-circle me-2"></i>Login</h2>
+
+  <!-- Error Message -->
+  <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+    <i class="bi bi-exclamation-triangle-fill me-2"></i>{{ errorMessage }}
+  </div>
+
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
+    <div class="mb-3">
+      <label for="loginUsername" class="form-label">
+        <i class="bi bi-person-fill me-1"></i> Username
+      </label>
+      <input type="text" id="loginUsername" class="form-control" formControlName="username" required />
+      <div *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched" class="error">
+        Username is required
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="loginPassword" class="form-label">
+        <i class="bi bi-lock-fill me-1"></i> Password
+      </label>
+      <input type="password" id="loginPassword" class="form-control" formControlName="password" required />
+      <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="error">
+        Password is required
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-custom mb-2" [disabled]="loginForm.invalid || isLoading">
+      <i *ngIf="!isLoading" class="bi bi-box-arrow-in-right me-2"></i>
+      <i *ngIf="isLoading" class="bi bi-arrow-clockwise me-2 spin"></i>
+      {{ isLoading ? 'Logging in...' : 'Login' }}
+    </button>
+    
+    <div class="text-center">
+      <a routerLink="/register" class="btn btn-link">
+        Don't have an account? Register here
+      </a>
+    </div>
+    <div class="text-center mt-2">
+      <button type="button" (click)="goToHome()" class="btn btn-link">
+        <i class="bi bi-house-door-fill me-1"></i> Go to Home
+      </button>
+    </div>
+  </form>
+</div>

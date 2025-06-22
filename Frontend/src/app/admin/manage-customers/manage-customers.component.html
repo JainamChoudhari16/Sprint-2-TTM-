@@ -1,0 +1,34 @@
+<div class="container">
+  <h3><i class="bi bi-people-fill"></i> Manage Customers</h3>
+  <p class="text-muted">Here you can view and remove customer profiles from the system.</p>
+
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Username</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Mobile</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of customers">
+          <td>{{ user.username }}</td>
+          <td>{{ user.name }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.mobile }}</td>
+          <td>
+            <button class="btn btn-danger btn-sm" (click)="deleteCustomer(user)">
+              <i class="bi bi-trash-fill"></i> Delete
+            </button>
+          </td>
+        </tr>
+        <tr *ngIf="customers.length === 0">
+          <td colspan="5" class="text-center">No customers found.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

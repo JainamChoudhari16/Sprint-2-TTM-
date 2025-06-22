@@ -1,0 +1,179 @@
+<div class="container">
+  <!-- Welcome Section -->
+  <!-- <div class="welcome-section mb-4">
+    <div class="welcome-content">
+      <h2 class="welcome-title">
+        <i class="bi bi-emoji-smile"></i> Welcome back, {{ getCurrentUserName() }}!
+      </h2>
+      <p class="welcome-subtitle">Ready for your next adventure? Let's make your journey comfortable and delicious!</p>
+    </div>
+    <div class="welcome-illustration">
+      <i class="bi bi-train-front"></i>
+    </div>
+  </div> -->
+
+  <!-- Quick Actions Section -->
+  <div class="row mb-4">
+    <div class="col-12">
+      <h5 class="section-title mb-3">
+        <i class="bi bi-lightning-charge"></i> Quick Actions
+      </h5>
+    </div>
+    <div class="col-md-4 mb-3">
+      <div class="quick-action-card primary-card">
+        <div class="quick-action-icon">
+          <i class="bi bi-search-heart"></i>
+        </div>
+        <h6>Search & Book Trains</h6>
+        <p class="text-muted">Find your perfect train and book tickets instantly</p>
+        <a routerLink="/customer/train-search" class="btn btn-primary btn-sm">
+          <i class="bi bi-arrow-right"></i> Search & Book
+        </a>
+      </div>
+    </div>
+    <div class="col-md-4 mb-3">
+      <div class="quick-action-card food-card">
+        <div class="quick-action-icon">
+          <i class="bi bi-egg-fried"></i>
+        </div>
+        <h6>Order Food</h6>
+        <p class="text-muted">Browse and order delicious meals for your journey</p>
+        <a routerLink="/customer/food-order" class="btn btn-success btn-sm">
+          <i class="bi bi-arrow-right"></i> Order Now
+        </a>
+      </div>
+    </div>
+    <div class="col-md-4 mb-3">
+      <div class="quick-action-card history-card">
+        <div class="quick-action-icon">
+          <i class="bi bi-clock-history"></i>
+        </div>
+        <h6>My Orders</h6>
+        <p class="text-muted">View your tickets and food order history</p>
+        <a routerLink="/customer/food-order-history" class="btn btn-info btn-sm">
+          <i class="bi bi-arrow-right"></i> View History
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Recent Bookings Section -->
+  <div class="row mb-4">
+    <div class="col-12">
+      <h5 class="section-title mb-3">
+        <i class="bi bi-calendar-check"></i> Recent Bookings
+      </h5>
+    </div>
+    <div class="col-12">
+      <div class="recent-bookings-container">
+        <div *ngIf="getRecentBookings().length === 0" class="no-bookings">
+          <i class="bi bi-calendar-x"></i>
+          <h6>No recent bookings</h6>
+          <p>Start your journey by searching for trains!</p>
+          <a routerLink="/customer/train-search" class="btn btn-outline-primary">
+            <i class="bi bi-search"></i> Search Trains
+          </a>
+        </div>
+        <div *ngFor="let booking of getRecentBookings()" class="booking-card">
+          <div class="booking-header">
+            <div class="train-info">
+              <h6>{{ booking.train }}</h6>
+              <span class="booking-date">{{ booking.date }}</span>
+            </div>
+            <div class="booking-status">
+              <span class="status-badge confirmed">{{ booking.status }}</span>
+            </div>
+          </div>
+          <div class="booking-details">
+            <div class="route">
+              <span class="from">{{ booking.origin }}</span>
+              <i class="bi bi-arrow-right"></i>
+              <span class="to">{{ booking.destination }}</span>
+            </div>
+            <div class="seats">
+              <i class="bi bi-people"></i> {{ booking.seats }} seats
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Travel Tips Section -->
+  <div class="row mb-4">
+    <div class="col-12">
+      <h5 class="section-title mb-3">
+        <i class="bi bi-lightbulb"></i> Travel Tips
+      </h5>
+    </div>
+    <div class="col-md-4 mb-3">
+      <div class="tip-card">
+        <div class="tip-icon">
+          <i class="bi bi-clock"></i>
+        </div>
+        <h6>Book Early</h6>
+        <p>Book your tickets at least 2-3 days in advance for better availability and lower prices.</p>
+      </div>
+    </div>
+    <div class="col-md-4 mb-3">
+      <div class="tip-card">
+        <div class="tip-icon">
+          <i class="bi bi-egg-fried"></i>
+        </div>
+        <h6>Order Food</h6>
+        <p>Pre-order your meals to avoid waiting in long queues and enjoy fresh, hot food during your journey.</p>
+      </div>
+    </div>
+    <div class="col-md-4 mb-3">
+      <div class="tip-card">
+        <div class="tip-icon">
+          <i class="bi bi-shield-check"></i>
+        </div>
+        <h6>Travel Safe</h6>
+        <p>Keep your ticket details handy and arrive at the station at least 30 minutes before departure.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick Stats -->
+  <div class="row">
+    <div class="col-12">
+      <h5 class="section-title mb-4">
+        <i class="bi bi-graph-up"></i> Your Journey Stats
+      </h5>
+    </div>
+    <div class="col-md-3">
+      <div class="stat-card">
+        <div class="stat-icon">
+          <i class="bi bi-ticket-perforated"></i>
+        </div>
+        <div class="stat-content">
+          <h4>{{ getTotalBookings() }}</h4>
+          <p>Total Bookings</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="stat-card">
+        <div class="stat-icon">
+          <i class="bi bi-egg-fried"></i>
+        </div>
+        <div class="stat-content">
+          <h4>{{ getTotalFoodOrders() }}</h4>
+          <p>Food Orders</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="stat-card">
+        <div class="stat-icon">
+          <i class="bi bi-calendar-event"></i>
+        </div>
+        <div class="stat-content">
+          <h4>{{ getUpcomingJourneys() }}</h4>
+          <p>Upcoming Journeys</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

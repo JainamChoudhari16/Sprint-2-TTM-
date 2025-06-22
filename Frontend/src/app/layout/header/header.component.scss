@@ -1,0 +1,174 @@
+.main-header .navbar {
+  background: linear-gradient(135deg, var(--dark-blue) 0%, #3A6B9A 100%);
+  padding: 0.5rem 1rem;
+  box-shadow: 0 4px 20px rgba(46, 89, 132, 0.15);
+  border-bottom: 1px solid var(--border-blue);
+  backdrop-filter: blur(10px);
+}
+
+.navbar-brand {
+  color: var(--white) !important;
+  font-weight: 500;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.navbar-brand:hover {
+  transform: translateY(-1px);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-brand .bi {
+  margin-right: 0.5rem;
+  font-size: 1.3rem;
+  transition: all 0.3s ease;
+}
+
+.navbar-brand:hover .bi {
+  transform: scale(1.1);
+}
+
+.nav-link {
+  color: var(--white) !important;
+  font-weight: 400;
+  font-size: 0.9rem;
+  padding: 0.5rem 1rem !important;
+  transition: all 0.3s ease;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  margin: 0 0.2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.nav-link:hover::before {
+  left: 100%;
+}
+
+.nav-link:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--white) !important;
+  border-color: var(--light-blue);
+  transform: translateY(-1px);
+}
+
+.nav-link.active {
+  background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%) !important;
+  color: var(--white) !important;
+  font-weight: 500;
+  border: 1px solid var(--light-blue);
+  box-shadow: 0 2px 8px rgba(91, 155, 213, 0.3);
+}
+
+.navbar-toggler {
+  border: 1px solid var(--light-blue);
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.navbar-toggler:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--white);
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(184, 212, 227, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+.dropdown-menu {
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(91, 155, 213, 0.15);
+  border: 1px solid var(--border-blue);
+  margin-top: 0.5rem !important;
+  background: var(--white);
+  backdrop-filter: blur(10px);
+  min-width: 180px;
+  padding: 0.5rem;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  font-weight: 400;
+  color: var(--dark-blue);
+  font-size: 0.9rem;
+  border-radius: 8px;
+  margin: 0.1rem 0;
+  transition: all 0.3s ease;
+}
+
+.dropdown-item .bi {
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.dropdown-item:hover {
+  background: var(--accent-blue);
+  color: var(--dark-blue);
+  transform: translateX(4px);
+}
+
+.dropdown-item:hover .bi {
+  transform: scale(1.1);
+}
+
+.dropdown-item.text-danger {
+  color: var(--danger) !important;
+}
+
+.dropdown-item.text-danger:hover {
+  background: #FFE8E8;
+  color: var(--danger) !important;
+}
+
+/* Button styles in navbar */
+.btn-sm {
+  padding: 0.4rem 0.8rem;
+  font-size: 0.85rem;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-light {
+  color: var(--white);
+  border: 1px solid var(--light-blue);
+  background: transparent;
+}
+
+.btn-outline-light:hover {
+  background: var(--light-blue);
+  border-color: var(--light-blue);
+  color: var(--dark-blue);
+  transform: translateY(-1px);
+}
+
+.btn-light {
+  background: var(--light-blue);
+  border: 1px solid var(--light-blue);
+  color: var(--dark-blue);
+}
+
+.btn-light:hover {
+  background: var(--primary-blue);
+  border-color: var(--primary-blue);
+  color: var(--white);
+  transform: translateY(-1px);
+}

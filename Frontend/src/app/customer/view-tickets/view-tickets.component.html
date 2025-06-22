@@ -1,0 +1,40 @@
+<div class="container">
+  <h3><i class="bi bi-ticket-perforated-fill"></i> Your Active Tickets</h3>
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped text-center">
+      <thead>
+        <tr>
+          <th><i class="bi bi-train-front"></i> Train</th>
+          <th><i class="bi bi-calendar-event"></i> Date</th>
+          <th><i class="bi bi-box-arrow-in-right"></i> From</th>
+          <th><i class="bi bi-box-arrow-in-left"></i> To</th>
+          <th><i class="bi bi-123"></i> Seats</th>
+          <th><i class="bi bi-check-circle-fill"></i> Status</th>
+          <th><i class="bi bi-x-circle-fill"></i> Cancel</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngIf="tickets.length === 0">
+          <td colspan="7">No active tickets found.</td>
+        </tr>
+        <tr *ngFor="let ticket of tickets">
+          <td>{{ ticket.train }}</td>
+          <td>{{ ticket.date }}</td>
+          <td>{{ ticket.origin }}</td>
+          <td>{{ ticket.destination }}</td>
+          <td>{{ ticket.seats }}</td>
+          <td>
+            <span class="badge" [ngClass]="{'bg-success': ticket.status === 'Confirmed', 'bg-warning text-dark': ticket.status === 'Pending'}">
+              {{ ticket.status }}
+            </span>
+          </td>
+          <td>
+            <button class="btn btn-cancel btn-sm" (click)="cancelTicket(ticket)">
+              <i class="bi bi-x-circle-fill"></i> Cancel
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

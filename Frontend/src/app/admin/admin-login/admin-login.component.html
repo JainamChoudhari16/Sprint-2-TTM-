@@ -1,0 +1,54 @@
+<div class="admin-login-container">
+  <h3><i class="bi bi-shield-lock-fill"></i> Admin Login</h3>
+  
+  <!-- Error Message -->
+  <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+    <i class="bi bi-exclamation-triangle-fill me-2"></i>{{ errorMessage }}
+  </div>
+  
+  <form [formGroup]="adminLoginForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="adminUsername" class="form-label">
+        <i class="bi bi-person-fill"></i> Username
+      </label>
+      <input
+        type="text"
+        class="form-control"
+        id="adminUsername"
+        formControlName="username"
+        placeholder="Enter admin username"
+        required
+      />
+      <div *ngIf="adminLoginForm.get('username')?.invalid && adminLoginForm.get('username')?.touched" class="error-message">
+        Username is required
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="adminPassword" class="form-label">
+        <i class="bi bi-lock-fill"></i> Password
+      </label>
+      <input
+        type="password"
+        class="form-control"
+        id="adminPassword"
+        formControlName="password"
+        placeholder="Enter password"
+        required
+      />
+      <div *ngIf="adminLoginForm.get('password')?.invalid && adminLoginForm.get('password')?.touched" class="error-message">
+        Password is required
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="adminLoginForm.invalid || isLoading">
+      <i *ngIf="!isLoading" class="bi bi-box-arrow-in-right"></i>
+      <i *ngIf="isLoading" class="bi bi-arrow-clockwise spin"></i>
+      {{ isLoading ? 'Logging in...' : 'Login' }}
+    </button>
+    
+    <div class="text-center mt-3">
+      <button type="button" (click)="goToHome()" class="btn btn-link">
+        <i class="bi bi-house-door-fill me-1"></i> Go to Home
+      </button>
+    </div>
+  </form>
+</div>

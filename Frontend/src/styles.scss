@@ -1,0 +1,274 @@
+:root {
+  --neutral-base: #F8FBFF; /* Very light, soft blue background */
+  --primary-blue: #5B9BD5; /* Soft, calming blue */
+  --secondary-blue: #7BA7D9; /* Gentle secondary blue */
+  --light-blue: #B8D4E3; /* Very soft light blue */
+  --dark-blue: #000000; /* Black for text */
+  --accent-blue: #E8F4FD; /* Very light blue for backgrounds */
+  --border-blue: #A8C6E5; /* Soft border blue */
+  --icon-blue: #000000; /* Black for icons */
+  --white: #FFFFFF;
+  --danger: #E74C3C; /* Softer red */
+  --text-light: #FFFFFF;
+  --text-dark: #000000; /* Black for text */
+  --shadow-blue: rgba(91, 155, 213, 0.1); /* Soft blue shadow */
+}
+
+/* Global Styles */
+@import 'bootstrap/dist/css/bootstrap.min.css';
+@import 'bootstrap-icons/font/bootstrap-icons.css';
+
+/* Increase Bootstrap Icon Size */
+.bi {
+  font-size: 1.2rem;
+  vertical-align: -0.2em;
+}
+
+body {
+  background: linear-gradient(135deg, var(--neutral-base) 0%, #F0F8FF 100%);
+  color: var(--dark-blue);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.6;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--dark-blue);
+  font-weight: 500;
+  letter-spacing: -0.5px;
+}
+
+.container, .container-fluid {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+/* Button Styles - Soft and Calming */
+.btn-primary, .btn-custom {
+  background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+  border: none;
+  color: var(--white) !important;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border-radius: 8px;
+  padding: 0.75rem 1.5rem;
+  box-shadow: 0 2px 8px var(--shadow-blue);
+}
+
+.btn-primary:hover, .btn-custom:hover {
+  background: linear-gradient(135deg, var(--secondary-blue) 0%, var(--primary-blue) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px var(--shadow-blue);
+}
+
+.btn-secondary {
+  background: linear-gradient(135deg, var(--light-blue) 0%, #C5D9E8 100%);
+  border: none;
+  color: var(--dark-blue) !important;
+  box-shadow: 0 2px 8px rgba(184, 212, 227, 0.3);
+}
+
+.btn-outline-primary {
+  color: var(--primary-blue) !important;
+  border: 2px solid var(--primary-blue);
+  background: transparent;
+}
+
+.btn-outline-primary:hover, .btn-outline-primary:active {
+  background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+  border-color: var(--primary-blue);
+  color: var(--white) !important;
+}
+
+/* Card Styles - Soft and Elegant */
+.card {
+  background: var(--white);
+  border: 1px solid var(--border-blue);
+  border-radius: 16px;
+  box-shadow: 0 4px 20px var(--shadow-blue);
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px var(--shadow-blue);
+}
+
+/* Form Styles - Gentle and Accessible */
+.form-control {
+  border: 2px solid var(--border-blue);
+  border-radius: 10px;
+  padding: 0.875rem 1rem;
+  background: var(--accent-blue);
+  color: var(--dark-blue);
+  transition: all 0.3s ease;
+  font-size: 1.05rem;
+}
+
+.form-control:focus {
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 0 3px rgba(91, 155, 213, 0.15);
+  background: var(--white);
+  outline: none;
+}
+
+.form-control::placeholder {
+  color: var(--dark-blue);
+  opacity: 0.6;
+}
+
+.form-label {
+  color: var(--dark-blue);
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+}
+
+/* Alert Styles - Soft and Informative */
+.alert-danger {
+  background: linear-gradient(135deg, #FFE8E8 0%, #FFF0F0 100%);
+  border: 1px solid #FFB3B3;
+  color: #D63031;
+  border-radius: 12px;
+}
+
+.alert-success {
+  background: linear-gradient(135deg, #E8F8F5 0%, #F0FFFD 100%);
+  border: 1px solid #A8E6CF;
+  color: var(--dark-blue);
+  border-radius: 12px;
+}
+
+/* Link Styles - Gentle and Clear */
+.btn-link {
+  color: var(--dark-blue);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btn-link:hover {
+  color: var(--dark-blue);
+  text-decoration: underline;
+}
+
+/* Error Messages - Soft and Clear */
+.error, .text-danger {
+  color: #E74C3C !important;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-top: 0.5rem;
+}
+
+/* Dropdown Styles - Elegant and Soft */
+.dropdown-menu {
+  border: 1px solid var(--border-blue);
+  border-radius: 12px;
+  box-shadow: 0 8px 25px var(--shadow-blue);
+  background: var(--white);
+  backdrop-filter: blur(10px);
+}
+
+.dropdown-item {
+  padding: 0.75rem 1rem;
+  color: var(--dark-blue);
+  transition: all 0.2s ease;
+  border-radius: 8px;
+  margin: 0.25rem;
+}
+
+.dropdown-item:hover {
+  background: var(--accent-blue);
+  color: var(--dark-blue);
+  transform: translateX(4px);
+}
+
+/* Table Styles - Clean and Readable */
+.table {
+  border: 1px solid var(--border-blue);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--white);
+  box-shadow: 0 4px 20px var(--shadow-blue);
+}
+
+.table th {
+  background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+  color: var(--white);
+  border: none;
+  font-weight: 500;
+  padding: 1rem;
+}
+
+.table td {
+  border-color: var(--border-blue);
+  padding: 1rem;
+  color: var(--dark-blue);
+  background: var(--white);
+}
+
+.table tbody tr:hover {
+  background: var(--accent-blue);
+  transition: all 0.2s ease;
+}
+
+/* Navigation Active States - Gentle Highlighting */
+.nav-link.active {
+  background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%) !important;
+  color: var(--white) !important;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px var(--shadow-blue);
+}
+
+/* Custom Scrollbar - Soft and Elegant */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--accent-blue);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+  border-radius: 5px;
+  border: 2px solid var(--accent-blue);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, var(--secondary-blue) 0%, var(--primary-blue) 100%);
+}
+
+/* Focus States for Accessibility */
+*:focus {
+  outline: 2px solid var(--primary-blue);
+  outline-offset: 2px;
+}
+
+/* Smooth Transitions */
+* {
+  transition: all 0.2s ease;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Loading Animation */
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
