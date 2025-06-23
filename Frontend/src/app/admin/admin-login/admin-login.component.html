@@ -8,19 +8,20 @@
   
   <form [formGroup]="adminLoginForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
-      <label for="adminUsername" class="form-label">
-        <i class="bi bi-person-fill"></i> Username
+      <label for="adminEmail" class="form-label">
+        <i class="bi bi-envelope-fill"></i> Email
       </label>
       <input
-        type="text"
+        type="email"
         class="form-control"
-        id="adminUsername"
-        formControlName="username"
-        placeholder="Enter admin username"
+        id="adminEmail"
+        formControlName="email"
+        placeholder="Enter admin email"
         required
       />
-      <div *ngIf="adminLoginForm.get('username')?.invalid && adminLoginForm.get('username')?.touched" class="error-message">
-        Username is required
+      <div *ngIf="adminLoginForm.get('email')?.invalid && adminLoginForm.get('email')?.touched" class="error-message">
+        <span *ngIf="adminLoginForm.get('email')?.errors?.['required']">Email is required</span>
+        <span *ngIf="adminLoginForm.get('email')?.errors?.['email']">Please enter a valid email address</span>
       </div>
     </div>
     <div class="form-group">

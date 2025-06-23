@@ -26,7 +26,7 @@ export class AuthService {
         {
           username: 'user',
           name: 'Default User',
-          email: 'user@example.com',
+          email: 'user@gmail.com',
           mobile: '9876543210',
           address: '123 Main Street, City, State 12345',
           aadhaar: '123456789012',
@@ -36,7 +36,7 @@ export class AuthService {
         {
           username: 'admin',
           name: 'Default Admin',
-          email: 'admin@example.com',
+          email: 'admin@train.com',
           mobile: '9876543211',
           address: '456 Admin Avenue, City, State 12345',
           aadhaar: '123456789013',
@@ -65,9 +65,9 @@ export class AuthService {
     }
   }
 
-  login$(username: string, password: string): Observable<boolean> {
+  login$(email: string, password: string): Observable<boolean> {
     const users = this.getUsersFromStorage();
-    const user = users.find(u => u.username === username && u.password === password);
+    const user = users.find(u => u.email === email && u.password === password);
     
     if (user) {
       // Create a copy without password for session storage
@@ -106,8 +106,8 @@ export class AuthService {
   register(user: User): Observable<boolean> {
     const users = this.getUsersFromStorage();
     
-    // Check if username already exists
-    if (users.some(u => u.username === user.username)) {
+    // Check if email already exists
+    if (users.some(u => u.email === user.email)) {
       return of(false);
     }
     
@@ -195,7 +195,13 @@ export class AuthService {
     return users.find(u => u.username === username) || null;
   }
 
-  // Method to check if username exists
+  // Method to check if email exists
+  isEmailTaken(email: string): boolean {
+    const users = this.getUsersFromStorage();
+    return users.some(u => u.email === email);
+  }
+
+  // Method to check if username exists (for backward compatibility)
   isUsernameTaken(username: string): boolean {
     const users = this.getUsersFromStorage();
     return users.some(u => u.username === username);

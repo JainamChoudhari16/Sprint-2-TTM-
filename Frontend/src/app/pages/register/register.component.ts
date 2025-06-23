@@ -34,54 +34,34 @@ export class RegisterComponent {
     }, { validators: this.passwordMatchValidator });
   }
 
-  passwordMatchValidator(form: AbstractControl) {
-    const password = form.get('password')?.value;
-    const confirmPassword = form.get('confirmPassword')?.value;
-    if (password !== confirmPassword) {
-      return { passwordMismatch: true };
+  passwordMatchValidator(control: AbstractControl): { [key: string]: boolean } | null {
+    const password = control.get('password');
+    const confirmPassword = control.get('confirmPassword');
+    
+    if (password && confirmPassword && password.value !== confirmPassword.value) {
+      return { 'passwordMismatch': true };
     }
     return null;
   }
 
-  // Input restriction methods
-  onMobileInput(event: any) {
-    const input = event.target;
-    const value = input.value;
-    // Remove any non-numeric characters
-    const numericValue = value.replace(/[^0-9]/g, '');
-    // Limit to 10 digits
-    const limitedValue = numericValue.slice(0, 10);
-    
-    if (value !== limitedValue) {
-      input.value = limitedValue;
-      this.registerForm.patchValue({ mobile: limitedValue });
+  getFieldError(fieldName: string): string {
+    const control = this.registerForm.get(fieldName);
+    if (control && control.invalid && control.touched) {
+      if (control.errors?.['required']) {
+        return `${this.getFieldLabel(fieldName)} is required`;
+      }
+      if (control.errors?.['minlength']) {
+        const requiredLength = control.errors['minlength'].requiredLength;
+        return `${this.getFieldLabel(fieldName)} must be at least ${requiredLength} characters`;
+      }
+      if (control.errors?.['email']) {
+        return 'Please enter a valid email address';
+      }
+      if (control.errors?.['pattern']) {
+        return this.getPatternErrorMessage(fieldName);
+      }
     }
-  }
-
-  onAadhaarInput(event: any) {
-    const input = event.target;
-    const value = input.value;
-    // Remove any non-numeric characters
-    const numericValue = value.replace(/[^0-9]/g, '');
-    // Limit to 12 digits
-    const limitedValue = numericValue.slice(0, 12);
-    
-    if (value !== limitedValue) {
-      input.value = limitedValue;
-      this.registerForm.patchValue({ aadhaar: limitedValue });
-    }
-  }
-
-  onAddressInput(event: any) {
-    const input = event.target;
-    const value = input.value;
-    // Allow only letters, numbers, spaces, "/", and ","
-    const validValue = value.replace(/[^a-zA-Z0-9\s\/,]/g, '');
-    
-    if (value !== validValue) {
-      input.value = validValue;
-      this.registerForm.patchValue({ address: validValue });
-    }
+    return '';
   }
 
   onNameInput(event: any) {
@@ -108,24 +88,40 @@ export class RegisterComponent {
     }
   }
 
-  // Validation helper methods
-  getFieldError(fieldName: string): string {
-    const field = this.registerForm.get(fieldName);
-    if (field?.invalid && field?.touched) {
-      if (field?.errors?.['required']) {
-        return `${this.getFieldLabel(fieldName)} is required`;
-      }
-      if (field?.errors?.['email']) {
-        return 'Please enter a valid email address';
-      }
-      if (field?.errors?.['pattern']) {
-        return this.getPatternErrorMessage(fieldName);
-      }
-      if (field?.errors?.['minlength']) {
-        return this.getMinLengthErrorMessage(fieldName, field.errors['minlength'].requiredLength);
-      }
+  onMobileInput(event: any) {
+    const input = event.target;
+    const value = input.value;
+    // Allow only numbers
+    const validValue = value.replace(/[^0-9]/g, '');
+    
+    if (value !== validValue) {
+      input.value = validValue;
+      this.registerForm.patchValue({ mobile: validValue });
     }
-    return '';
+  }
+
+  onAddressInput(event: any) {
+    const input = event.target;
+    const value = input.value;
+    // Allow letters, numbers, spaces, "/", and ","
+    const validValue = value.replace(/[^a-zA-Z0-9\s\/,]/g, '');
+    
+    if (value !== validValue) {
+      input.value = validValue;
+      this.registerForm.patchValue({ address: validValue });
+    }
+  }
+
+  onAadhaarInput(event: any) {
+    const input = event.target;
+    const value = input.value;
+    // Allow only numbers
+    const validValue = value.replace(/[^0-9]/g, '');
+    
+    if (value !== validValue) {
+      input.value = validValue;
+      this.registerForm.patchValue({ aadhaar: validValue });
+    }
   }
 
   getFieldLabel(fieldName: string): string {
@@ -153,16 +149,6 @@ export class RegisterComponent {
     return messages[fieldName] || 'Invalid format';
   }
 
-  getMinLengthErrorMessage(fieldName: string, requiredLength: number): string {
-    const messages: { [key: string]: string } = {
-      name: `Name must be at least ${requiredLength} characters`,
-      username: `Username must be at least ${requiredLength} characters`,
-      address: `Address must be at least ${requiredLength} characters`,
-      password: `Password must be at least ${requiredLength} characters`
-    };
-    return messages[fieldName] || `Must be at least ${requiredLength} characters`;
-  }
-
   onSubmit() {
     this.errorMessage = '';
     this.isLoading = true;
@@ -170,6 +156,13 @@ export class RegisterComponent {
     if (this.registerForm.valid) {
       const { confirmPassword, ...userData } = this.registerForm.value;
       const userToRegister = { ...userData, role: 'customer' };
+
+      // Check if email already exists
+      if (this.authService.isEmailTaken(userToRegister.email)) {
+        this.errorMessage = 'Email already exists. Please use a different email address.';
+        this.isLoading = false;
+        return;
+      }
 
       // Check if username already exists
       if (this.authService.isUsernameTaken(userToRegister.username)) {
@@ -182,7 +175,7 @@ export class RegisterComponent {
         next: (success) => {
           this.isLoading = false;
           if (success) {
-            alert('Registration successful! Please login.');
+            alert('Registration successful! Please login with your email address.');
             this.router.navigate(['/login']);
           } else {
             this.errorMessage = 'Registration failed. Please try again.';

@@ -23,7 +23,7 @@ export class AdminLoginComponent {
     private authService: AuthService
   ) {
     this.adminLoginForm = this.fb.group({
-      username: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
     });
   }
@@ -33,9 +33,9 @@ export class AdminLoginComponent {
     this.isLoading = true;
     
     if (this.adminLoginForm.valid) {
-      const { username, password } = this.adminLoginForm.value;
+      const { email, password } = this.adminLoginForm.value;
       
-      this.authService.login$(username, password).subscribe({
+      this.authService.login$(email, password).subscribe({
         next: (success) => {
           this.isLoading = false;
           if (success) {

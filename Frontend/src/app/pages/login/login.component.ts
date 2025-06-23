@@ -24,7 +24,7 @@ export class LoginComponent {
     private authService: AuthService
   ) {
     this.loginForm = this.fb.group({
-      username: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
     });
   }
@@ -37,13 +37,13 @@ export class LoginComponent {
     this.isLoading = true;
     this.errorMessage = '';
 
-    const { username, password } = this.loginForm.value;
+    const { email, password } = this.loginForm.value;
 
-    this.authService.login$(username, password).subscribe({
+    this.authService.login$(email, password).subscribe({
       next: (success) => {
         this.isLoading = false;
         if (!success) {
-          this.errorMessage = 'Invalid username or password. Please try again.';
+          this.errorMessage = 'Invalid email or password. Please try again.';
         }
         // Navigation is handled in the auth service
       },
